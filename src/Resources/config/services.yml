@@ -1,0 +1,12 @@
+services:
+
+## Guzzle stuffs
+
+    facile.crossbar.publisher.guzzlehttp.client:
+        class: GuzzleHttp\Client
+#        public: false
+        prototype: true
+
+    facile.crossbar.publisher.factory:
+        class: Facile\CrossbarHTTPPublisherBundle\Publisher\Factory
+#        public: false

@@ -1,0 +1,10 @@
+framework:
+    secret: "Four can keep a secret, if three of them are dead."
+
+facile_crossbar_http_publisher:
+    connections:
+        test_publisher:
+            host: locallost
+            port: 8081
+            secret: foo
+            key: bar
