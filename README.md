@@ -20,17 +20,27 @@ This bundle allows to submit PubSub events via HTTP/POST requests to a [Crossbar
 
 ####Installation
 
-As simple as 
+As simple as download it 
 
-```
-composer require facile-it/CrossbarHTTPPublisherBundle dev-master
+```console
+$ composer require facile-it/crossbar-http-publisher-bundle dev-master
 ```
 
-####Configuration:
+and register the bundle in your app (usually in app/AppKernel.php)
+````php
+public function registerBundles()
+{
+    return array(
+        // ...
+        new Facile\CrossbarHTTPPublisherBundle\FacileCrossbarHTTPPublisherBundle(),
+    );
+}
+````
+####Configuration
 
 Quite easy, just add something like this in your config.yml:
 
-````
+````yaml
 facile_crossbar_http_publisher:
     connections:
         dummy_publisher_1:
@@ -47,7 +57,7 @@ facile_crossbar_http_publisher:
 
 and you'll can get the publisher services from the container:
 
-````
+````php
 $firstPublisher = $container->get('facile.crossbar.publisher.dummy_publisher_1');
 $secondPublisher = $container->get('facile.crossbar.publisher.dummy_publisher_2');
 
@@ -60,7 +70,7 @@ $firstPublisher->publish($topic, ['foo',1]);
 $secondPublisher->publish($topic, null, ['key'=>'value']);
 
 // using both and printing Crossbar's response already decoded:
-print_r($firstPublisher->publish($topic, ['foo',1], ['key'=>'value']););
+print_r($firstPublisher->publish($topic, ['foo',1], ['key'=>'value']));
 
 // ouptuts:
 //
