@@ -6,7 +6,3 @@ services:
         class: GuzzleHttp\Client
 #        public: false
         prototype: true
-
-    facile.crossbar.publisher.factory:
-        class: Facile\CrossbarHTTPPublisherBundle\Publisher\Factory
-#        public: false

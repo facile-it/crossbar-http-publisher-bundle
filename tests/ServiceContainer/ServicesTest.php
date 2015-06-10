@@ -4,10 +4,20 @@ namespace Facile\CrossbarHTTPPublisherBundle\Tests;
 
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
+/**
+ * Class ServicesTest
+ * @package Facile\CrossbarHTTPPublisherBundle\Tests
+ */
 class ServicesTest extends \PHPUnit_Framework_TestCase
 {
+    /**
+     * @var
+     */
     private $container;
 
+    /**
+     *
+     */
     protected function setUp()
     {
         $kernel = new \AppKernel('test', true);
@@ -16,6 +26,9 @@ class ServicesTest extends \PHPUnit_Framework_TestCase
         $this->container = $kernel->getContainer();
     }
 
+    /**
+     *
+     */
     public function testServicesAreDefinedInContainer()
     {
         /** @var ContainerInterface $container */
@@ -27,18 +40,21 @@ class ServicesTest extends \PHPUnit_Framework_TestCase
         );
         $guzzleClient = $container->get('facile.crossbar.publisher.guzzlehttp.client');
         $this->assertInstanceOf('\GuzzleHttp\Client', $guzzleClient);
-
-        $this->assertTrue(
-            $container->has('facile.crossbar.publisher.factory')
-        );
-        $factory = $container->get('facile.crossbar.publisher.factory');
-        $this->assertInstanceOf('\Facile\CrossbarHTTPPublisherBundle\Publisher\Factory', $factory);
     }
 
+    /**
+     *
+     */
     public function testConnectionsServicesAreDefinedInContainer()
     {
         /** @var ContainerInterface $container */
         $container = $this->container;
         $this->assertInstanceOf('\Symfony\Component\DependencyInjection\ContainerInterface', $container);
+
+        $this->assertTrue(
+            $container->has('facile.crossbar.publisher.dummy_publisher')
+        );
+        $publisher = $container->get('facile.crossbar.publisher.dummy_publisher');
+        $this->assertInstanceOf('\Facile\CrossbarHTTPPublisherBundle\Publisher\Publisher', $publisher);
     }
 }

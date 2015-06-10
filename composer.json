@@ -1,6 +1,6 @@
 {
   "name": "facile/CrossbarHTTPPublisherBundle",
-  "description": "description_text",
+  "description": "This bundle allows to submit PubSub events via HTTP/POST requests to a Crossbar HTTP Publisher.",
   "minimum-stability": "stable",
   "license": "Apache License Version 2.0",
   "type": "symfony-bundle",

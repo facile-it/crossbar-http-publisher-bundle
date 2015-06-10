@@ -48,11 +48,22 @@ class FacileCrossbarHTTPPublisherExtension extends Extension
     {
         foreach ($this->config['connections'] as $key => $connection) {
 
-            var_dump($connection);
+            $protocol = $connection['protocol'];
+            $host = $connection['host'];
+            $port = $connection['port'];
+            $path = $connection['path'];
+            $auth_key = $connection['auth_key'];
+            $auth_secret = $connection['auth_secret'];
+            $hostname = $connection['hostname'];
+            $ignoreSsl = $connection['ssl_ignore'];
+
+            if($path[0] != '/') {
+                $path = '/'.$path;
+            }
 
             $definition = new Definition(
                 "Facile\CrossbarHTTPPublisherBundle\Publisher\Factory",
-                array($connection)
+                array($protocol, $host, $port, $path, $auth_key, $auth_secret, $hostname, $ignoreSsl)
             );
             $definition->setPublic(false);
             $factoryName = sprintf('facile.crossbar.publisher.factory.%s', $key);
@@ -60,10 +71,8 @@ class FacileCrossbarHTTPPublisherExtension extends Extension
 
             $definition = new Definition("Facile\CrossbarHTTPPublisherBundle\Publisher\Publisher");
             if (method_exists($definition, 'setFactory')) {
-                // to be inlined in services.xml when dependency on Symfony DependencyInjection is bumped to 2.6
                 $definition->setFactory(array(new Reference($factoryName), 'createPublisher'));
             } else {
-                // to be removed when dependency on Symfony DependencyInjection is bumped to 2.6
                 $definition->setFactoryService($factoryName);
                 $definition->setFactoryMethod('createPublisher');
             }
