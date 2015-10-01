@@ -32,8 +32,8 @@ class FacileCrossbarHTTPPublisherExtension extends Extension
     {
         $this->container = $container;
 
-        $loader = new Loader\YamlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
-        $loader->load('services.yml');
+        $loader = new Loader\XmlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
+        $loader->load('services.xml');
 
         $configuration = new Configuration();
         $this->config = $this->processConfiguration($configuration, $config);
