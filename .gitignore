@@ -1,5 +1,5 @@
+composer.lock
 composer.phar
-vendor/
 tests/app/cache
-test/app/logs
-
+tests/app/logs
+vendor/
