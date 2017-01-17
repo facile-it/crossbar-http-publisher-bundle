@@ -12,7 +12,6 @@ use Symfony\Component\Config\Definition\ConfigurationInterface;
  */
 class Configuration implements ConfigurationInterface
 {
-
     /**
      * Generates the configuration tree builder.
      *
@@ -23,6 +22,7 @@ class Configuration implements ConfigurationInterface
         $tree = new TreeBuilder();
         $rootNode = $tree->root('facile_crossbar_http_publisher');
         $this->addConnections($rootNode);
+
         return $tree;
     }
 
@@ -34,22 +34,21 @@ class Configuration implements ConfigurationInterface
         $node
             ->fixXmlConfig('connection')
             ->children()
-                ->arrayNode('connections')
-                ->canBeUnset()
-                    ->prototype('array')
-                        ->children()
-                            ->scalarNode('protocol')->defaultValue('http')->end()
-                            ->scalarNode('host')->defaultValue('127.0.0.1')->end()
-                            ->scalarNode('path')->defaultValue('/publish')->end()
-                            ->scalarNode('port')->defaultValue(8080)->end()
-                            ->scalarNode('auth_secret')->defaultValue(null)->end()
-                            ->scalarNode('auth_key')->defaultValue(null)->end()
-                            ->scalarNode('hostname')->defaultValue(null)->end()
-                            ->booleanNode('ssl_ignore')->defaultFalse()->end()
-                        ->end()
-                    ->end()
-                ->end()
+            ->arrayNode('connections')
+            ->canBeUnset()
+            ->prototype('array')
+            ->children()
+            ->scalarNode('protocol')->defaultValue('http')->end()
+            ->scalarNode('host')->defaultValue('127.0.0.1')->end()
+            ->scalarNode('path')->defaultValue('/publish')->end()
+            ->scalarNode('port')->defaultValue(8080)->end()
+            ->scalarNode('auth_secret')->defaultValue(null)->end()
+            ->scalarNode('auth_key')->defaultValue(null)->end()
+            ->scalarNode('hostname')->defaultValue(null)->end()
+            ->booleanNode('ssl_ignore')->defaultFalse()->end()
             ->end()
-        ;
+            ->end()
+            ->end()
+            ->end();
     }
 }
