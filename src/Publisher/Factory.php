@@ -10,44 +10,28 @@ use GuzzleHttp\Client as GuzzleClient;
  */
 class Factory
 {
-    /**
-     * @var string
-     */
+    /** @var string */
     private $protocol;
 
-    /**
-     * @var string
-     */
+    /** @var string */
     private $path;
 
-    /**
-     * @var string
-     */
+    /** @var string */
     private $host;
 
-    /**
-     * @var int
-     */
+    /** @var int */
     private $port;
 
-    /**
-     * @var string
-     */
+    /** @var string */
     private $key;
 
-    /**
-     * @var string
-     */
+    /** @var string */
     private $secret;
 
-    /**
-     * @var bool|string
-     */
+    /** @var bool|string */
     private $hostname;
 
-    /**
-     * @var bool
-     */
+    /** @var bool */
     private $ignoreSsl;
 
     /**
@@ -77,6 +61,7 @@ class Factory
     public function createPublisher()
     {
         $guzzleClient = new GuzzleClient($this->getGuzzleConfigArray());
+
         return new Publisher($guzzleClient, $this->key, $this->secret);
     }
 
@@ -97,10 +82,11 @@ class Factory
 
         $config['defaults']['headers']['Content-Type'] = 'application/json';
 
-        if(!is_null($this->hostname)) {
+        if (null !== $this->hostname) {
             $config['defaults']['headers']['Host'] = $this->hostname;
         }
-        if($this->ignoreSsl) {
+
+        if ($this->ignoreSsl) {
             $config['defaults']['verify'] = false;
         }
 

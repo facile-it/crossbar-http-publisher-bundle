@@ -11,17 +11,13 @@ use GuzzleHttp\Client;
  */
 class Publisher
 {
-    /**
-     * @var \GuzzleHttp\Client
-     */
+    /** @var \GuzzleHttp\Client */
     private $client;
-    /**
-     * @var string
-     */
+
+    /** @var string */
     private $key;
-    /**
-     * @var string
-     */
+
+    /** @var string */
     private $secret;
 
     /**
@@ -57,11 +53,8 @@ class Publisher
         );
 
         try {
-
             $response = $this->client->send($request);
-
-        }catch (\Exception $e) {
-
+        } catch (\Exception $e) {
             throw new PublishRequestException($e->getMessage(), 500, $e);
         }
 
@@ -80,11 +73,11 @@ class Publisher
 
         $body['topic'] = $topic;
 
-        if(!is_null($args)) {
+        if (null !== $args) {
             $body['args'] = $args;
         }
 
-        if(!is_null($kwargs)) {
+        if (null !== $kwargs) {
             $body['kwargs'] = $kwargs;
         }
 
@@ -99,16 +92,16 @@ class Publisher
     {
         $query = array();
 
-        $seq = rand(0, pow(2,12));
+        $seq = mt_rand(0, pow(2, 12));
         $now = new \DateTime('now', new \DateTimeZone('UTC'));
         $timestamp = $now->format("Y-m-d\TH:i:s.u\Z");
 
         $query['seq'] = $seq;
         $query['timestamp'] = $timestamp;
 
-        if(null !== $this->key && null !== $this->secret) {
+        if (null !== $this->key && null !== $this->secret) {
 
-            $nonce = rand(0, pow(2,53));
+            $nonce = mt_rand(0, pow(2, 53));
             $signature = hash_hmac(
                 'sha256',
                 $this->key . $timestamp . $seq . $nonce . $body,
