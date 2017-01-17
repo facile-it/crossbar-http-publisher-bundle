@@ -5,6 +5,7 @@
   "license": "Apache License Version 2.0",
   "type": "symfony-bundle",
   "require": {
+    "php": "^5.4|^7.0",
     "symfony/http-kernel": "^2.3",
     "symfony/framework-bundle": "^2.3",
     "symfony/dependency-injection": "^2.3",

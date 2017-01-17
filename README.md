@@ -10,7 +10,7 @@ This bundle allows to submit PubSub events via HTTP/POST requests to a [Crossbar
 
 ####Requires:
 
-* php: >=5.3
+* php: >=5.4
 * symfony/http-kernel: >=2.3
 * symfony/framework-bundle: >=2.3
 * symfony/dependency-injection: >=2.3
