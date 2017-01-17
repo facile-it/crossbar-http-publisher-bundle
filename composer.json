@@ -10,10 +10,12 @@
     "symfony/dependency-injection": "^2.3",
     "symfony/config": "^2.3",
     "symfony/yaml": "^2.3",
-    "guzzlehttp/guzzle": ">=5.0,<6.0"
+    "guzzlehttp/guzzle": "^5.0"
   },
   "require-dev": {
-    "phpunit/phpunit": "^4"
+    "phpunit/phpunit": "^4|^5",
+    "codeclimate/php-test-reporter": "0.*",
+    "satooshi/php-coveralls": "~1.0"
   },
   "autoload": {
     "psr-4": {

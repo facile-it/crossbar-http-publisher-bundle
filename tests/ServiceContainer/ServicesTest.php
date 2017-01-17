@@ -10,14 +10,9 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
  */
 class ServicesTest extends \PHPUnit_Framework_TestCase
 {
-    /**
-     * @var
-     */
+    /** @var ContainerInterface */
     private $container;
 
-    /**
-     *
-     */
     protected function setUp()
     {
         $kernel = new \AppKernel('test', true);
@@ -26,9 +21,6 @@ class ServicesTest extends \PHPUnit_Framework_TestCase
         $this->container = $kernel->getContainer();
     }
 
-    /**
-     *
-     */
     public function testServicesAreDefinedInContainer()
     {
         /** @var ContainerInterface $container */
@@ -42,9 +34,6 @@ class ServicesTest extends \PHPUnit_Framework_TestCase
         $this->assertInstanceOf('\GuzzleHttp\Client', $guzzleClient);
     }
 
-    /**
-     *
-     */
     public function testConnectionsServicesAreDefinedInContainer()
     {
         /** @var ContainerInterface $container */

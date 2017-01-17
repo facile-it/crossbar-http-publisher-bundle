@@ -1,4 +1,3 @@
-composer.lock
 composer.phar
 tests/app/cache
 tests/app/logs

@@ -1,0 +1,37 @@
+language: php
+sudo: false
+
+matrix:
+  include:
+    - php: 5.3
+      env: 
+        - DEPS="low"
+    - php: 5.4
+    - php: 5.5
+    - php: 5.6
+    - php: 7.0
+      env: 
+        - TEST_COVERAGE=true
+    - php: 7.0
+      env: 
+        - DEPS="lock"
+    - php: 7.1
+    - php: hhvm
+  allow_failures:
+    - php: hhvm
+  fast_finish: true
+
+install:
+  - if [[ $TEST_COVERAGE ]]; then PHPUNIT_FLAGS="--coverage-clover ./build/logs/clover.xml"; fi
+
+  - if [[ $DEPS == "low" ]]; then composer update --prefer-lowest --prefer-dist --prefer-stable --no-interaction; fi
+  - if [[ $DEPS == "lock" ]]; then composer install --prefer-dist --no-interaction; fi
+  - if [[ !$DEPS ]]; then composer update --prefer-dist --prefer-stable --no-interaction; fi
+
+script:
+  - bin/phpunit -v $PHPUNIT_FLAGS
+
+after_success:
+  - if [[ $TEST_COVERAGE ]]; then php bin/coveralls -v; fi
+  - if [[ $TEST_COVERAGE ]]; then wget https://scrutinizer-ci.com/ocular.phar && php ocular.phar code-coverage:upload --format=php-clover ./build/logs/clover.xml; fi
+  - if [[ $TEST_COVERAGE ]]; then bin/test-reporter; fi
