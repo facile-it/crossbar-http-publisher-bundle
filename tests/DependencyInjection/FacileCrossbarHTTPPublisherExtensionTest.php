@@ -1,15 +1,14 @@
 <?php
 
-namespace Facile\CrossbarHTTPPublisherBundle\Tests;
+namespace Facile\CrossbarHTTPPublisherBundle\Tests\DependencyInjection;
 
-use GuzzleHttp\ClientInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**
- * Class ServicesTest
+ * Class FacileCrossbarHTTPPublisherExtensionTest
  * @package Facile\CrossbarHTTPPublisherBundle\Tests
  */
-class ServicesTest extends \PHPUnit_Framework_TestCase
+class FacileCrossbarHTTPPublisherExtensionTest extends \PHPUnit_Framework_TestCase
 {
     /** @var ContainerInterface */
     private $container;
