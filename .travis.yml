@@ -3,7 +3,8 @@ sudo: required
 services:
   - docker
 env:
-  DOCKER_COMPOSE_VERSION: 1.8.1
+  global:
+    DOCKER_COMPOSE_VERSION: 1.8.1
 
 matrix:
   include:
@@ -32,11 +33,11 @@ install:
   - if [[ !$DEPS ]]; then composer update --prefer-dist --prefer-stable --no-interaction; fi
 
 before_script:
-  - docker-compose --version
   - docker-compose up -d
-  - docker-compose ps
+
 script:
   - vendor/bin/phpunit -v $PHPUNIT_FLAGS
+  - docker-compose logs
 
 after_success:
   - if [[ $TEST_COVERAGE ]]; then php vendor/bin/coveralls -v; fi
