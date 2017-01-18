@@ -2,6 +2,7 @@
 
 namespace Facile\CrossbarHTTPPublisherBundle\DependencyInjection;
 
+use GuzzleHttp\ClientInterface;
 use Symfony\Component\Config\FileLocator;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Definition;
@@ -16,37 +17,27 @@ use Symfony\Component\HttpKernel\DependencyInjection\Extension;
 class FacileCrossbarHTTPPublisherExtension extends Extension
 {
     /**
-     * @var ContainerBuilder
-     */
-    private $container;
-
-    /**
-     * @var array
-     */
-    private $config = array();
-
-    /**
      * {@inheritDoc}
      */
     public function load(array $config, ContainerBuilder $container)
     {
-        $this->container = $container;
-
         $loader = new Loader\XmlFileLoader($container, new FileLocator(__DIR__ . '/../Resources/config'));
         $loader->load('services.xml');
 
         $configuration = new Configuration();
-        $this->config = $this->processConfiguration($configuration, $config);
+        $config = $this->processConfiguration($configuration, $config);
 
-        $this->loadConnections();
+        $this->loadConnections($container, $config);
     }
 
     /**
      * Registers publisher services in container
+     * @param ContainerBuilder $container
+     * @param array $config
      */
-    protected function loadConnections()
+    protected function loadConnections(ContainerBuilder $container, array $config)
     {
-        foreach ($this->config['connections'] as $key => $connection) {
+        foreach ($config['connections'] as $key => $connection) {
 
             $protocol = $connection['protocol'];
             $host = $connection['host'];
@@ -57,26 +48,26 @@ class FacileCrossbarHTTPPublisherExtension extends Extension
             $hostname = $connection['hostname'];
             $ignoreSsl = $connection['ssl_ignore'];
 
-            if ($path[0] != '/') {
+            if ($path[0] !== '/') {
                 $path = '/' . $path;
             }
 
-            $definition = new Definition(
-                "Facile\CrossbarHTTPPublisherBundle\Publisher\Factory",
+            $factoryDefinition = new Definition(
+                'Facile\CrossbarHTTPPublisherBundle\Publisher\Factory',
                 array($protocol, $host, $port, $path, $auth_key, $auth_secret, $hostname, $ignoreSsl)
             );
-            $definition->setPublic(false);
+            $factoryDefinition->setPublic(false);
             $factoryName = sprintf('facile.crossbar.publisher.factory.%s', $key);
-            $this->container->setDefinition($factoryName, $definition);
+            $container->setDefinition($factoryName, $factoryDefinition);
 
-            $definition = new Definition("Facile\CrossbarHTTPPublisherBundle\Publisher\Publisher");
+            $definition = new Definition('Facile\CrossbarHTTPPublisherBundle\Publisher\Publisher');
             if (method_exists($definition, 'setFactory')) {
                 $definition->setFactory(array(new Reference($factoryName), 'createPublisher'));
             } else {
                 $definition->setFactoryService($factoryName);
                 $definition->setFactoryMethod('createPublisher');
             }
-            $this->container->setDefinition(sprintf('facile.crossbar.publisher.%s', $key), $definition);
+            $container->setDefinition(sprintf('facile.crossbar.publisher.%s', $key), $definition);
         }
     }
 }

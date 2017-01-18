@@ -2,6 +2,7 @@
 
 namespace Facile\CrossbarHTTPPublisherBundle\Tests;
 
+use GuzzleHttp\ClientInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**
@@ -30,8 +31,10 @@ class ServicesTest extends \PHPUnit_Framework_TestCase
         $this->assertTrue(
             $container->has('facile.crossbar.publisher.guzzlehttp.client')
         );
+        /** @var ClientInterface $guzzleClient */
         $guzzleClient = $container->get('facile.crossbar.publisher.guzzlehttp.client');
-        $this->assertInstanceOf('\GuzzleHttp\Client', $guzzleClient);
+        $this->assertInstanceOf('\GuzzleHttp\ClientInterface', $guzzleClient);
+        $guzzleClient->getDefaultOption();
     }
 
     public function testConnectionsServicesAreDefinedInContainer()
