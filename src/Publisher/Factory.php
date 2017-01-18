@@ -32,6 +32,7 @@ class Factory
             $port,
             $path
         );
+        $config['base_uri'] = $config['base_url']; // Guzzle 6 compat
 
         $config['defaults']['headers']['Content-Type'] = 'application/json';
 

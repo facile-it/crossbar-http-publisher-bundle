@@ -43,29 +43,26 @@ class Publisher
     {
         $jsonBody = $this->prepareBody($topic, $args, $kwargs);
 
-        $request = $this->client->createRequest(
-            'POST',
-            null,
-            array(
-                'body' => $jsonBody,
-                'query' => $this->prepareSignature($jsonBody)
-            )
-        );
-
         try {
-            $response = $this->client->send($request);
+            $response = $this->client->post(
+                '',
+                [
+                    'json' => $jsonBody,
+                    'query' => $this->prepareSignature($jsonBody)
+                ]
+            );
         } catch (\Exception $e) {
             throw new PublishRequestException($e->getMessage(), 500, $e);
         }
 
-        return $response->json();
+        return json_decode($response->getBody(), true);
     }
 
     /**
      * @param $topic
      * @param $args
      * @param $kwargs
-     * @return string
+     * @return array
      */
     private function prepareBody($topic, $args, $kwargs)
     {
@@ -81,11 +78,11 @@ class Publisher
             $body['kwargs'] = $kwargs;
         }
 
-        return json_encode($body);
+        return $body;
     }
 
     /**
-     * @param $body
+     * @param array $body
      * @return array
      */
     private function prepareSignature($body)
@@ -104,7 +101,7 @@ class Publisher
             $nonce = mt_rand(0, pow(2, 53));
             $signature = hash_hmac(
                 'sha256',
-                $this->key . $timestamp . $seq . $nonce . $body,
+                $this->key . $timestamp . $seq . $nonce . json_encode($body),
                 $this->secret,
                 true
             );
