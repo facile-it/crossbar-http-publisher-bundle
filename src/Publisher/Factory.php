@@ -35,15 +35,9 @@ class Factory
     private $ignoreSsl;
 
     /**
-     * @param $protocol
-     * @param $host
-     * @param $path
-     * @param $port
-     * @param $key
-     * @param $secret
-     * @param $hostname
+     * @return Publisher
      */
-    public function __construct($protocol, $host, $port, $path, $key, $secret, $hostname, $ignoreSsl)
+    public function createPublisher($protocol, $host, $port, $path, $key, $secret, $hostname, $ignoreSsl)
     {
         $this->protocol = $protocol;
         $this->host = $host;
@@ -53,13 +47,7 @@ class Factory
         $this->secret = $secret;
         $this->hostname = $hostname;
         $this->ignoreSsl = $ignoreSsl;
-    }
 
-    /**
-     * @return Publisher
-     */
-    public function createPublisher()
-    {
         $guzzleClient = new GuzzleClient($this->getGuzzleConfigArray());
 
         return new Publisher($guzzleClient, $this->key, $this->secret);
