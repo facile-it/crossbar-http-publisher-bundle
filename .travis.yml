@@ -1,5 +1,7 @@
 language: php
-sudo: false
+sudo: required
+services:
+ - docker
 
 matrix:
   include:
@@ -27,6 +29,8 @@ install:
   - if [[ $DEPS == "lock" ]]; then composer install --prefer-dist --no-interaction; fi
   - if [[ !$DEPS ]]; then composer update --prefer-dist --prefer-stable --no-interaction; fi
 
+before_script:
+  - docker-compose up -d
 script:
   - vendor/bin/phpunit -v $PHPUNIT_FLAGS
 
