@@ -25,7 +25,6 @@ matrix:
   fast_finish: true
 
 install:
-  - docker-compose --version
   - if [[ $TEST_COVERAGE ]]; then PHPUNIT_FLAGS="--coverage-clover ./build/logs/clover.xml"; fi
 
   - if [[ $DEPS == "low" ]]; then composer update --prefer-lowest --prefer-dist --prefer-stable --no-interaction; fi
@@ -33,7 +32,9 @@ install:
   - if [[ !$DEPS ]]; then composer update --prefer-dist --prefer-stable --no-interaction; fi
 
 before_script:
+  - docker-compose --version
   - docker-compose up -d
+  - docker-compose ps
 script:
   - vendor/bin/phpunit -v $PHPUNIT_FLAGS
 
