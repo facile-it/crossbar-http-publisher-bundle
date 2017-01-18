@@ -4,6 +4,14 @@
   "minimum-stability": "stable",
   "license": "Apache-2.0",
   "type": "symfony-bundle",
+  "keywords": [
+    "symfony",
+    "websocket",
+    "client",
+    "guzzle",
+    "publisher",
+    "crossbar"
+  ],
   "require": {
     "php": "^5.4|^7.0",
     "symfony/http-kernel": "^2.3",
@@ -31,6 +39,10 @@
     {
       "name": "luca bo",
       "email": "me@luca.bo"
+    },
+    {
+      "name": "Alessandro Lai",
+      "email": "alessandro.lai85@gmail.com"
     }
   ]
 }
