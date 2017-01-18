@@ -2,25 +2,15 @@
 
 namespace Facile\CrossbarHTTPPublisherBundle\Tests\DependencyInjection;
 
+use Facile\CrossbarHTTPPublisherBundle\Tests\BaseFunctionalTest;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**
  * Class FacileCrossbarHTTPPublisherExtensionTest
  * @package Facile\CrossbarHTTPPublisherBundle\Tests
  */
-class FacileCrossbarHTTPPublisherExtensionTest extends \PHPUnit_Framework_TestCase
+class FacileCrossbarHTTPPublisherExtensionTest extends BaseFunctionalTest
 {
-    /** @var ContainerInterface */
-    private $container;
-
-    protected function setUp()
-    {
-        $kernel = new \AppKernel('test', true);
-        $kernel->boot();
-
-        $this->container = $kernel->getContainer();
-    }
-
     public function testServicesAreDefinedInContainer()
     {
         /** @var ContainerInterface $container */
