@@ -28,13 +28,15 @@ class ServicesTest extends \PHPUnit_Framework_TestCase
         $container = $this->container;
         $this->assertInstanceOf('\Symfony\Component\DependencyInjection\ContainerInterface', $container);
 
-        $this->assertTrue(
-            $container->has('facile.crossbar.publisher.guzzlehttp.client')
+        $this->assertFalse(
+            $container->has('facile.crossbar.publisher.factory'), 
+            'Factory present as a public service'
         );
-        /** @var ClientInterface $guzzleClient */
-        $guzzleClient = $container->get('facile.crossbar.publisher.guzzlehttp.client');
-        $this->assertInstanceOf('\GuzzleHttp\ClientInterface', $guzzleClient);
-        $guzzleClient->getDefaultOption();
+
+        $this->assertFalse(
+            $container->has('facile.crossbar.publisher.guzzlehttp.client'), 
+            'Old, unneeded Guzzle client service present'
+        );
     }
 
     public function testConnectionsServicesAreDefinedInContainer()
@@ -44,8 +46,10 @@ class ServicesTest extends \PHPUnit_Framework_TestCase
         $this->assertInstanceOf('\Symfony\Component\DependencyInjection\ContainerInterface', $container);
 
         $this->assertTrue(
-            $container->has('facile.crossbar.publisher.dummy_publisher')
+            $container->has('facile.crossbar.publisher.dummy_publisher'),
+            'Publisher missing from container'
         );
+
         $publisher = $container->get('facile.crossbar.publisher.dummy_publisher');
         $this->assertInstanceOf('\Facile\CrossbarHTTPPublisherBundle\Publisher\Publisher', $publisher);
     }

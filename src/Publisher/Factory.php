@@ -10,74 +10,41 @@ use GuzzleHttp\Client as GuzzleClient;
  */
 class Factory
 {
-    /** @var string */
-    private $protocol;
-
-    /** @var string */
-    private $path;
-
-    /** @var string */
-    private $host;
-
-    /** @var int */
-    private $port;
-
-    /** @var string */
-    private $key;
-
-    /** @var string */
-    private $secret;
-
-    /** @var bool|string */
-    private $hostname;
-
-    /** @var bool */
-    private $ignoreSsl;
-
     /**
+     * @param string $protocol
+     * @param string $host
+     * @param int $port
+     * @param string $path
+     * @param string $key
+     * @param string $secret
+     * @param bool|string $hostname
+     * @param bool $ignoreSsl
      * @return Publisher
      */
     public function createPublisher($protocol, $host, $port, $path, $key, $secret, $hostname, $ignoreSsl)
-    {
-        $this->protocol = $protocol;
-        $this->host = $host;
-        $this->port = $port;
-        $this->path = $path;
-        $this->key = $key;
-        $this->secret = $secret;
-        $this->hostname = $hostname;
-        $this->ignoreSsl = $ignoreSsl;
-
-        $guzzleClient = new GuzzleClient($this->getGuzzleConfigArray());
-
-        return new Publisher($guzzleClient, $this->key, $this->secret);
-    }
-
-    /**
-     * @return array
-     */
-    private function getGuzzleConfigArray()
     {
         $config = array();
 
         $config['base_url'] = sprintf(
             '%s://%s:%s%s',
-            $this->protocol,
-            $this->host,
-            $this->port,
-            $this->path
+            $protocol,
+            $host,
+            $port,
+            $path
         );
 
         $config['defaults']['headers']['Content-Type'] = 'application/json';
 
-        if (null !== $this->hostname) {
-            $config['defaults']['headers']['Host'] = $this->hostname;
+        if (null !== $hostname) {
+            $config['defaults']['headers']['Host'] = $hostname;
         }
 
-        if ($this->ignoreSsl) {
+        if ($ignoreSsl) {
             $config['defaults']['verify'] = false;
         }
 
-        return $config;
+        $guzzleClient = new GuzzleClient($config);
+
+        return new Publisher($guzzleClient, $key, $secret);
     }
 }
