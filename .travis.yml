@@ -34,6 +34,7 @@ install:
 
 before_script:
   - docker-compose up -d
+  - sleep 15
   - tests/wait_for_crossbar.sh
 
 script:
