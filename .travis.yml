@@ -1,6 +1,6 @@
 language: php
 sudo: required
-dist: docker
+dist: trusty
 
 cache:
   directories:
