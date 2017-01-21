@@ -1,10 +1,10 @@
 #!/bin/bash
 
-for COUNTER in `seq 1 35`
+for COUNTER in `seq 1 30`
 do
-    nc -z crossbar-bundle.dev 54321;
+    curl -X POST -H "Content-Type: application/json" -s http://crossbar.dev:54321/publish > /dev/null;
     if [ $? = 0 ]; then
-        echo "Crossbar seems to be up! Port 54321 open"
+        echo "Crossbar seems to be up and responding!"
         exit 0;
     else
         echo "Waiting for Crossbar to be ready..."
