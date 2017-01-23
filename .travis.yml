@@ -1,10 +1,7 @@
 language: php
 sudo: required
-services:
-  - docker
-env:
-  global:
-    - DOCKER_COMPOSE_VERSION=1.8.1
+dist: trusty
+
 cache:
   directories:
     - $HOME/.composer/cache/files
@@ -33,7 +30,11 @@ install:
 
   - if [[ $DEPS == "low" ]]; then composer update --prefer-lowest --prefer-dist --prefer-stable --no-interaction; fi
   - if [[ $DEPS == "lock" ]]; then composer install --prefer-dist --no-interaction; fi
-  - if [[ !$DEPS ]]; then composer update --prefer-dist --prefer-stable --no-interaction; fi
+  - if [[ -z $DEPS ]]; then composer update --prefer-dist --prefer-stable --no-interaction; fi
+
+before_script:
+  - docker-compose up -d
+  - tests/wait_for_crossbar.sh
 
 before_script:
   - docker-compose up -d
