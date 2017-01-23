@@ -36,9 +36,6 @@ before_script:
   - docker-compose up -d
   - tests/wait_for_crossbar.sh
 
-before_script:
-  - docker-compose up -d
-
 script:
   - vendor/bin/phpunit -v $PHPUNIT_FLAGS
   - docker-compose logs
