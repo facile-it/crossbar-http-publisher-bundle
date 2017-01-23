@@ -3,6 +3,12 @@
 All notable changes of the CrossbarHttpPublisherBundle are documented in this file using the 
 [Keep a CHANGELOG](http://keepachangelog.com/) principles.
 
+## [1.0] - TBA
+
+### Changed
+* Bump minimum required PHP version to 5.6
+* Bump minimum required Symfony version to 2.7
+ 
 ## [0.2] - 2017-01-23
 
 ### Changed
@@ -17,6 +23,7 @@ All notable changes of the CrossbarHttpPublisherBundle are documented in this fi
   * Enable code coverage in Travis build
   * Enable Scrutinizer inspection and code coverage collection
   * Enable Coveralls.io
+
 ## [0.1] - 2017-01-23
 
 * First tagged release; previously released as dev-master only 
