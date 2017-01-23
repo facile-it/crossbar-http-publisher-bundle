@@ -10,3 +10,9 @@ facile_crossbar_http_publisher:
             auth_key: this_is_very_key
             auth_secret: this_is_very_secret
             ssl_ignore: true
+        integration_test_publisher:
+            protocol: http
+            host: crossbar-bundle.dev
+            port: 54321
+            path: '/publish'
+            ssl_ignore: true
