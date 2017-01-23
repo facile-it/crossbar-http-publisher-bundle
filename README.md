@@ -8,34 +8,34 @@
 [![Scrutinizer][Master scrutinizer image]][Master scrutinizer link]
 [![SL Insight][SL Insight image]][SL Insight link]
 
-This bundle allows to submit PubSub events via HTTP/POST requests to a [Crossbar HTTP Publisher](http://crossbar.io/docs/HTTP-Bridge-Services-Publisher/).
+This bundle allows to submit PubSub events via HTTP/POST requests to a [Crossbar HTTP Publisher](http://crossbar.io/docs/HTTP-Bridge-Services-Publisher/), which is a simple, lightweight websocket server implemented in Python.
 
-####Supports:
+## Features
 
-* Multiple publisher, automatically registered into Service Container
-* [Signed requests](http://crossbar.io/docs/HTTP-Bridge-Services-Publisher/#signed-requests)
-* SSL certificate verification skip (useful in dev enviroment)
+* Define multiple publishers
+* Publishers are automatically registered into Syomfony's service container
+* Send [signed requests](http://crossbar.io/docs/HTTP-Bridge-Services-Publisher/#signed-requests) easily
+* Skip SSL certificate verification (useful in dev environment)
 
-####Requires:
+## Requirements
+* PHP >=5.6
+* Guzzle 5 or 6
+* The following Symfony components (or the full-stack framework), version 2.7, 2.8 or 3.x:
+    * symfony/framework-bundle
+    * symfony/dependency-injection
+    * symfony/config
 
-* php: >=5.4
-* symfony/http-kernel: >=2.3
-* symfony/framework-bundle: >=2.3
-* symfony/dependency-injection: >=2.3
-* symfony/config: >=2.3
-* symfony/yaml: >=2.3
-* guzzlehttp/guzzle": >=5.0,<6.0
+## Installation
 
-####Installation
-
-As simple as download it 
+Require this package with Composer: 
 
 ```console
-$ composer require facile-it/crossbar-http-publisher-bundle dev-master
+$ composer require facile-it/crossbar-http-publisher-bundle
 ```
 
-and register the bundle in your app (usually in app/AppKernel.php)
-````php
+... and register the bundle in your app (usually in `app/AppKernel.php`)
+
+```php
 public function registerBundles()
 {
     return array(
@@ -44,28 +44,30 @@ public function registerBundles()
     );
 }
 ````
-####Configuration
 
-Quite easy, just add something like this in your config.yml:
+#### Configuration
+You just need to configure the publishers that you need to use; here is an example of the config, with the default values:
 
-````yaml
+```yaml
 facile_crossbar_http_publisher:
-    connections:
-        dummy_publisher_1:
-            protocol: https                     #default: http
-            host: crossbar.io                   #default: 127.0.0.1 
-            port: 443                           #default: 8080
-            path: publish                       #default: publish, often just empty
-            auth_key: this_is_very_key          #default: null
-            auth_secret: this_is_very_secret    #default: null
-            ssl_ignore: true                    #default: false
-        dummy_publisher_2:
-            host: crossbar.tu
-````
+  connections:
+    dummy_publisher_1:
+      protocol: https                     #default: http
+      host: crossbar.io                   #default: 127.0.0.1 
+      port: 443                           #default: 8080
+      path: publish                       #default: publish, often just empty
+      auth_key: this_is_very_key          #default: null
+      auth_secret: this_is_very_secret    #default: null
+      ssl_ignore: true                    #default: false
+  dummy_publisher_2:
+      host: crossbar.tu
+```
 
-and you'll can get the publisher services from the container:
+#### Usage
 
-````php
+Once you've done that, the publishers will be available as Symfony services in your container:
+
+```php
 $firstPublisher = $container->get('facile.crossbar.publisher.dummy_publisher_1');
 $secondPublisher = $container->get('facile.crossbar.publisher.dummy_publisher_2');
 
@@ -86,8 +88,7 @@ print_r($firstPublisher->publish($topic, ['foo',1], ['key'=>'value']));
 //   ["id"]=>
 //   int(1395572605)
 // }
-
-````
+```
 
 [Last stable image]: https://poser.pugx.org/facile-it/crossbar-http-publisher-bundle/version.svg
 [Last unstable image]: https://poser.pugx.org/facile-it/crossbar-http-publisher-bundle/v/unstable.svg
