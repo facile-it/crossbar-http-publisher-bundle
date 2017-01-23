@@ -3,13 +3,15 @@
 All notable changes of the CrossbarHttpPublisherBundle are documented in this file using the 
 [Keep a CHANGELOG](http://keepachangelog.com/) principles.
 
-## [1.0] - TBA
+## [1.0] - 2017-01-23
 
 ### Changed
 * Bump minimum required PHP version to 5.6
 * Bump minimum required Symfony version to 2.7
  
-## [0.2] - 2017-01-23
+## [0.2] - 2017-01-18
+
+* Second, belated tagged release
 
 ### Changed
 * Added support for Symfony 3.x
@@ -20,10 +22,11 @@ All notable changes of the CrossbarHttpPublisherBundle are documented in this fi
 * Improvements to the `composer.json` package description
 * Various CI improvements:
   * Enable Travis CI build matrix (PHP 5.4 up to 7.1, and lowest & .lock deps)
+  * Add an integration test using a containerized Crossbar server, to test the whole functionality of the bundle
   * Enable code coverage in Travis build
   * Enable Scrutinizer inspection and code coverage collection
   * Enable Coveralls.io
 
-## [0.1] - 2017-01-23
+## [0.1] - 2015-10-05
 
-* First tagged release; previously released as dev-master only 
+* First, belated tagged release; previously released as dev-master only 
