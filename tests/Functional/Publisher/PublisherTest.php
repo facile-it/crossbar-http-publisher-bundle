@@ -20,4 +20,14 @@ class PublisherTest extends BaseFunctionalTest
 
         $this->assertArrayHasKey('id', $response);
     }
+
+    public function testPublishWithSignedMessage()
+    {
+        /** @var Publisher $publisher */
+        $publisher = $this->container->get('facile.crossbar.publisher.integration_test_publisher_signed');
+
+        $response = $publisher->publish('topic', null, ['someData' => 'payload']);
+
+        $this->assertArrayHasKey('id', $response);
+    }
 }
