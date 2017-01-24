@@ -11,7 +11,7 @@ use GuzzleHttp\Client;
  */
 class Publisher
 {
-    /** @var \GuzzleHttp\Client */
+    /** @var Client */
     private $client;
 
     /** @var string */

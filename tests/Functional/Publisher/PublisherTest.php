@@ -1,6 +1,6 @@
 <?php
 
-namespace Facile\CrossbarHTTPPublisherBundle\Tests\Publisher;
+namespace Facile\CrossbarHTTPPublisherBundle\Tests\Functional\Publisher;
 
 use Facile\CrossbarHTTPPublisherBundle\Publisher\Publisher;
 use Facile\CrossbarHTTPPublisherBundle\Tests\BaseFunctionalTest;
@@ -15,9 +15,9 @@ class PublisherTest extends BaseFunctionalTest
     {
         /** @var Publisher $publisher */
         $publisher = $this->container->get('facile.crossbar.publisher.integration_test_publisher');
-        
+
         $response = $publisher->publish('topic', null, ['someData' => 'payload']);
-        
+
         $this->assertArrayHasKey('id', $response);
     }
 }
