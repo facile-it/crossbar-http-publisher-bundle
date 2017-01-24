@@ -6,7 +6,7 @@ All notable changes of the CrossbarHttpPublisherBundle are documented in this fi
 ## [1.0.1] - 2017-01-24
 
 ### Changed
-* Raised test coverage to 100%
+* Raised test coverage to nearly 100%
 * Bump PHPUnit's minimum require-dev version to 4.6 to use Prophecy
 
 ### Fixed
