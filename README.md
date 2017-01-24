@@ -45,7 +45,7 @@ public function registerBundles()
 }
 ````
 
-#### Configuration
+## Configuration
 You just need to configure the publishers that you need to use; here is an example of the config, with the default values:
 
 ```yaml
@@ -63,7 +63,7 @@ facile_crossbar_http_publisher:
       host: crossbar.tu
 ```
 
-#### Usage
+## Usage
 
 Once you've done that, the publishers will be available as Symfony services in your container:
 

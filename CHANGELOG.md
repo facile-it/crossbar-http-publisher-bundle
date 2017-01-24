@@ -3,6 +3,16 @@
 All notable changes of the CrossbarHttpPublisherBundle are documented in this file using the 
 [Keep a CHANGELOG](http://keepachangelog.com/) principles.
 
+## [1.0.1] - 2017-01-24
+
+### Changed
+* Raised test coverage to 100%
+* Bump PHPUnit's minimum require-dev version to 4.6 to use Prophecy
+
+### Fixed
+* Minor style fixes
+* Removed BC layer for Symfony <2.6 factory definition 
+
 ## [1.0] - 2017-01-23
 
 ### Changed
