@@ -6,6 +6,8 @@ use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Definition;
 use Symfony\Component\DependencyInjection\Reference;
 use Symfony\Component\HttpKernel\DependencyInjection\Extension;
+use Facile\CrossbarHTTPPublisherBundle\Publisher\Publisher;
+use Facile\CrossbarHTTPPublisherBundle\Publisher\Factory;
 
 /**
  * Class FacileCrossbarHTTPPublisherExtension
@@ -32,13 +34,8 @@ class FacileCrossbarHTTPPublisherExtension extends Extension
     private function loadConnections(ContainerBuilder $container, array $config)
     {
         $factoryName = $this->addFactoryToContainer($container);
-        $genericDefinition = new Definition('Facile\CrossbarHTTPPublisherBundle\Publisher\Publisher');
-        if (method_exists($genericDefinition, 'setFactory')) {
-            $genericDefinition->setFactory([new Reference($factoryName), 'createPublisher']);
-        } else {
-            $genericDefinition->setFactoryService($factoryName);
-            $genericDefinition->setFactoryMethod('createPublisher');
-        }
+        $genericDefinition = new Definition(Publisher::class);
+        $genericDefinition->setFactory([new Reference($factoryName), 'createPublisher']);
 
         foreach ($config['connections'] as $key => $connection) {
             $protocol = $connection['protocol'];
@@ -66,7 +63,7 @@ class FacileCrossbarHTTPPublisherExtension extends Extension
      */
     private function addFactoryToContainer(ContainerBuilder $container)
     {
-        $factoryDefinition = new Definition('Facile\CrossbarHTTPPublisherBundle\Publisher\Factory');
+        $factoryDefinition = new Definition(Factory::class);
         $factoryDefinition->setPublic(false);
         $factoryName = 'facile.crossbar.publisher.factory';
         $container->setDefinition($factoryName, $factoryDefinition);

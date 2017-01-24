@@ -66,7 +66,7 @@ class Publisher
      */
     private function prepareBody($topic, $args, $kwargs)
     {
-        $body = array();
+        $body = [];
 
         $body['topic'] = $topic;
 
@@ -87,7 +87,7 @@ class Publisher
      */
     private function prepareSignature($body)
     {
-        $query = array();
+        $query = [];
 
         $seq = mt_rand(0, pow(2, 12));
         $now = new \DateTime('now', new \DateTimeZone('UTC'));

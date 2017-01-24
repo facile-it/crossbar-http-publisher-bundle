@@ -23,7 +23,7 @@ class Factory
      */
     public function createPublisher($protocol, $host, $port, $path, $key, $secret, $hostname, $ignoreSsl)
     {
-        $config = array();
+        $config = [];
 
         $config['base_url'] = sprintf(
             '%s://%s:%s%s',
