@@ -34,14 +34,14 @@ class Factory
         );
         $config['base_uri'] = $config['base_url']; // Guzzle 6 compat
 
-        $config['defaults']['headers']['Content-Type'] = 'application/json';
+        $config['headers']['Content-Type'] = 'application/json';
 
         if (null !== $hostname) {
-            $config['defaults']['headers']['Host'] = $hostname;
+            $config['headers']['Host'] = $hostname;
         }
 
         if ($ignoreSsl) {
-            $config['defaults']['verify'] = false;
+            $config['verify'] = false;
         }
 
         $guzzleClient = new GuzzleClient($config);
