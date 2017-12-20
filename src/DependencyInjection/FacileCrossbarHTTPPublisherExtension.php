@@ -53,6 +53,7 @@ class FacileCrossbarHTTPPublisherExtension extends Extension
 
             $definition = clone $genericDefinition;
             $definition->setArguments([$protocol, $host, $port, $path, $auth_key, $auth_secret, $hostname, $ignoreSsl]);
+            $definition->setPublic(true);
             $container->setDefinition(sprintf('facile.crossbar.publisher.%s', $key), $definition);
         }
     }

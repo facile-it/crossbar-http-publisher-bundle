@@ -20,7 +20,7 @@ This bundle allows to submit PubSub events via HTTP/POST requests to a [Crossbar
 ## Requirements
 * PHP >=5.6
 * Guzzle 5 or 6
-* The following Symfony components (or the full-stack framework), version 2.7, 2.8 or 3.x:
+* The following Symfony components (or the full-stack framework), version 2.7, 2.8, 3.x or 4.x:
     * symfony/framework-bundle
     * symfony/dependency-injection
     * symfony/config
