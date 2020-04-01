@@ -12,6 +12,7 @@ matrix:
     - php: 5.6
       env: 
         - DEPS="low"
+        - SYMFONY=2.7.0
     - php: 7.2
       env: 
         - DEPS="lock"
