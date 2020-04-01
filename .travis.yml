@@ -12,7 +12,6 @@ matrix:
     - php: 5.6
       env: 
         - DEPS="low"
-        - SYMFONY=2.7.0
     - php: 7.2
       env: 
         - DEPS="lock"
@@ -40,7 +39,7 @@ matrix:
 
 before_install:
   - composer self-update
-  - if [ "$SYMFONY" != "" ]; then composer require "symfony/symfony:${SYMFONY}" --no-update; fi;
+  - if [ "$SYMFONY" != "" ]; then sed -ri 's/\^2.7 \|\| \^3.0 \|\| \^4.0/'$SYMFONY'/' composer.json; fi;
 
 install:
   - if [[ $TEST_COVERAGE ]]; then PHPUNIT_FLAGS="--coverage-clover ./build/logs/clover.xml"; fi
