@@ -41,7 +41,7 @@ before_install:
 install:
   - if [[ $TEST_COVERAGE ]]; then PHPUNIT_FLAGS="--coverage-clover ./build/logs/clover.xml"; fi
 
-  - if [[ $DEPS == "low" ]]; then composer update --prefer-lowest --prefer-dist --prefer-stable --no-interaction; fi
+  - if [[ $DEPS == "low" ]]; then composer install --ignore-platform-reqs --prefer-dist --prefer-stable --no-interaction; composer update --prefer-lowest --prefer-dist --prefer-stable --no-interaction; fi
   - if [[ $DEPS == "lock" ]]; then composer install --prefer-dist --no-interaction; fi
   - if [[ -z $DEPS ]]; then composer update --prefer-dist --prefer-stable --no-interaction; fi
 
