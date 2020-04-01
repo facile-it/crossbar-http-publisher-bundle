@@ -3,7 +3,6 @@ version: "2"
 services:
   crossbar:
     image: crossbario/crossbar
-    hostname: crossbar-bundle.dev
     ports:
       - 54321:8080
     volumes:
