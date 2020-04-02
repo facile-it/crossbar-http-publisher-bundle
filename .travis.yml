@@ -12,6 +12,7 @@ matrix:
     - php: 5.6
       env: 
         - DEPS="low"
+        - COMPOSER_MEMORY_LIMIT="-1"
     - php: 7.2
       env: 
         - DEPS="lock"
@@ -44,7 +45,7 @@ before_install:
 install:
   - if [[ $TEST_COVERAGE ]]; then PHPUNIT_FLAGS="--coverage-clover ./build/logs/clover.xml"; fi
 
-  - if [[ $DEPS == "low" ]]; then php -d memory_limit=-1 $(which composer) update --prefer-lowest --prefer-dist --prefer-stable --no-interaction; fi
+  - if [[ $DEPS == "low" ]]; then composer update --prefer-lowest --prefer-dist --prefer-stable --no-interaction; fi
   - if [[ $DEPS == "lock" ]]; then composer install --prefer-dist --no-interaction; fi
   - if [[ -z $DEPS ]]; then composer update --prefer-dist --prefer-stable --no-interaction; fi
 
