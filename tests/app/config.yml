@@ -12,13 +12,13 @@ facile_crossbar_http_publisher:
             ssl_ignore: true
         integration_test_publisher:
             protocol: http
-            host: crossbar-bundle.dev
+            host: localhost
             port: 54321
             path: '/publish'
             ssl_ignore: true
         integration_test_publisher_signed:
             protocol: http
-            host: crossbar-bundle.dev
+            host: localhost
             port: 54321
             path: '/publish'
             ssl_ignore: true

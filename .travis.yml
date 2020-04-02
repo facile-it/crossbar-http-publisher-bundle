@@ -1,6 +1,5 @@
 language: php
-sudo: required
-dist: trusty
+os: linux
 services:
  - docker
 
@@ -10,15 +9,11 @@ cache:
 
 matrix:
   include:
-
     - php: 5.6
       env: 
         - DEPS="low"
-
-    - php: 7.0
-      env: 
-        - TEST_COVERAGE=true
-    - php: 7.0
+        - COMPOSER_MEMORY_LIMIT="-1"
+    - php: 7.2
       env: 
         - DEPS="lock"
     - php: '7.0'
@@ -27,27 +22,25 @@ matrix:
     - php: '7.0'
       env:
         - SYMFONY=3.4.*
-
     - php: '7.1'
       env:
         - SYMFONY=4.*
-
     - php: '7.2'
+    - php: '7.3'
+    - php: '7.4'
+      env:
+        - TEST_COVERAGE=true
+    - php: '7.4'
       env:
         - SYMFONY=dev-master
-
-    - php: hhvm
-
   allow_failures:
-    - php: hhvm
     - env:
         - SYMFONY=dev-master
-
   fast_finish: true
 
 before_install:
   - composer self-update
-  - if [ "$SYMFONY" != "" ]; then composer require "symfony/symfony:${SYMFONY}" --no-update; fi;
+  - if [ "$SYMFONY" != "" ]; then sed -ri 's/\^2.7 \|\| \^3.0 \|\| \^4.0/'$SYMFONY'/' composer.json; fi;
 
 install:
   - if [[ $TEST_COVERAGE ]]; then PHPUNIT_FLAGS="--coverage-clover ./build/logs/clover.xml"; fi
