@@ -94,7 +94,7 @@ print_r($firstPublisher->publish($topic, ['foo',1], ['key'=>'value']));
 [Last unstable image]: https://poser.pugx.org/facile-it/crossbar-http-publisher-bundle/v/unstable.svg
 [Master build image]: https://travis-ci.org/facile-it/crossbar-http-publisher-bundle.svg
 [Master scrutinizer image]: https://scrutinizer-ci.com/g/facile-it/crossbar-http-publisher-bundle/badges/quality-score.png?b=master
-[Master coverage image]: https://coveralls.io/repos/facile-it/crossbar-http-publisher-bundle/badge.svg?branch=master&service=github
+[Master coverage image]: https://codecov.io/gh/facile-it/crossbar-http-publisher-bundle/branch/master/graph/badge.svg
 [SL Insight image]: https://insight.sensiolabs.com/projects/875c484f-104c-4664-b9f0-f2872492ae42/mini.png
 
 [Packagist link]: https://packagist.org/packages/facile-it/crossbar-http-publisher-bundle
@@ -102,5 +102,5 @@ print_r($firstPublisher->publish($topic, ['foo',1], ['key'=>'value']));
 [Appveyor build link]: https://ci.appveyor.com/project/Jean85/crossbar-http-publisher-bundle/branch/master
 [Master climate link]: https://codeclimate.com/github/facile-it/crossbar-http-publisher-bundle
 [Master scrutinizer link]: https://scrutinizer-ci.com/g/facile-it/crossbar-http-publisher-bundle/?branch=master
-[Master coverage link]: https://coveralls.io/github/facile-it/crossbar-http-publisher-bundle?branch=master
+[Master coverage link]: https://codecov.io/gh/facile-it/crossbar-http-publisher-bundle
 [SL Insight link]: https://insight.sensiolabs.com/projects/875c484f-104c-4664-b9f0-f2872492ae42
