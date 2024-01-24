@@ -17,7 +17,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
       - name: Docker compose
-        run: docker-compose up -d && tests/wait_for_crossbar.sh
+        run: docker compose up -d && docker compose up --wait crossbar
       - name: Setup PHP
         uses: shivammathur/setup-php@v2
         with:
