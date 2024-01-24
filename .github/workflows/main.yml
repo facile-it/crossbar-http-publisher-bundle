@@ -8,6 +8,13 @@ jobs:
   tests:
     name: Test (PHP ${{ matrix.php }})
     runs-on: ubuntu-latest
+    services:
+      mongo:
+        image: crossbario/crossbar
+        ports:
+          - 54321:8080
+        volumes:
+          - ./crossbar/config.json:/node/.crossbar/config.json
     strategy:
       matrix:
         include:
