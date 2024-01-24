@@ -12,6 +12,7 @@ use Facile\CrossbarHTTPPublisherBundle\Publisher\Factory;
 /**
  * Class FacileCrossbarHTTPPublisherExtension
  * @package Facile\CrossbarHTTPPublisherBundle\DependencyInjection
+ * @see \Facile\CrossbarHTTPPublisherBundle\Tests\DependencyInjection\FacileCrossbarHTTPPublisherExtensionTest
  */
 class FacileCrossbarHTTPPublisherExtension extends Extension
 {
