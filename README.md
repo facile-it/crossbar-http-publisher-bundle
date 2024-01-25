@@ -18,7 +18,7 @@ This bundle allows to submit PubSub events via HTTP/POST requests to a [Crossbar
 * Skip SSL certificate verification (useful in dev environment)
 
 ## Requirements
-* PHP >=5.6
+* PHP >= 7
 * Guzzle 5 or 6
 * The following Symfony components (or the full-stack framework), version 2.7, 2.8, 3.x or 4.x:
     * symfony/framework-bundle
