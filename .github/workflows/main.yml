@@ -13,8 +13,9 @@ jobs:
         include:
           - php: 7.4
             symfony: "^4.4"
-            coverage: true
           - php: 8.1
+            symfony: "^4.4"
+          - php: 8.2
             symfony: "^4.4"
           - php: 8.3
             symfony: "^4.4"
@@ -36,6 +37,5 @@ jobs:
         run: vendor/bin/phpunit --coverage-clover=build/coverage-report.xml
       - name: Upload code coverage
         uses: codecov/codecov-action@v3
-        if: matrix.coverage
         with:
           file: build/coverage-report.xml
