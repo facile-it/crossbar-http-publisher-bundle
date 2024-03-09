@@ -23,7 +23,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
       - name: Docker compose
-        run: docker compose up -d && docker compose up --wait crossbar
+        run: docker compose up -d
       - name: Setup PHP
         uses: shivammathur/setup-php@v2
         with:
@@ -33,6 +33,8 @@ jobs:
         run: rm composer.lock && composer require "symfony/symfony:${{ matrix.symfony }}" --no-update
       - name: Install dependencies
         uses: ramsey/composer-install@v2
+      - name: Docker compose wait
+        run: docker compose up --wait crossbar
       - name: Run tests
         run: vendor/bin/phpunit --coverage-clover=build/coverage-report.xml
       - name: Upload code coverage
