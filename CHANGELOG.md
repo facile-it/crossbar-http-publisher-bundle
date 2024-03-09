@@ -7,7 +7,7 @@ All notable changes of the CrossbarHttpPublisherBundle are documented in this fi
 ### Added
 - Support for PHP 8.
 ### Removed
-- Support for PHP 5. Only PHP 7.4 is tested via GH actions
+- Support for PHP 5. Only PHP 7.4 and 8+ is tested via GH actions
 
 ## [1.0.1] - 2017-01-24
 
