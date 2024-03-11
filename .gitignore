@@ -1,4 +1,6 @@
+.phpunit.result.cache
 composer.phar
 tests/app/cache
 tests/app/logs
 vendor/
+var/
