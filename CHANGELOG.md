@@ -4,6 +4,8 @@ All notable changes of the CrossbarHttpPublisherBundle are documented in this fi
 [Keep a CHANGELOG](http://keepachangelog.com/) principles.
 
 ## [Unreleased]
+
+## [1.1.0] - 2024-03-11
 ### Added
 - Support for PHP 8.
 ### Removed
@@ -47,4 +49,5 @@ All notable changes of the CrossbarHttpPublisherBundle are documented in this fi
 
 * First, belated tagged release; previously released as dev-master only 
 
-[Unreleased]: https://github.com/facile-it/crossbar-http-publisher-bundle/compare/1.0.1..master
+[Unreleased]: https://github.com/facile-it/crossbar-http-publisher-bundle/compare/1.1.0..master
+[1.1.0]: https://github.com/facile-it/crossbar-http-publisher-bundle/compare/1.0.1..1.1.0
