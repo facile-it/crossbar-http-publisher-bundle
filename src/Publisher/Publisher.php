@@ -11,21 +11,11 @@ use GuzzleHttp\Client;
  */
 class Publisher
 {
-    /** @var Client */
-    private $client;
+    private Client $client;
+    private ?string $key;
+    private ?string $secret;
 
-    /** @var string */
-    private $key;
-
-    /** @var string */
-    private $secret;
-
-    /**
-     * @param Client $client
-     * @param $key
-     * @param $secret
-     */
-    public function __construct(Client $client, $key, $secret)
+    public function __construct(Client $client, ?string $key, ?string $secret)
     {
         $this->client = $client;
         $this->key = $key;
@@ -33,13 +23,10 @@ class Publisher
     }
 
     /**
-     * @param $topic string
-     * @param $args array|null
-     * @param $kwargs array|null
      * @return array JSON decoded response
      * @throws \Exception
      */
-    public function publish($topic, array $args = null, array $kwargs = null)
+    public function publish(string $topic, ?array $args = null, ?array $kwargs = null): array
     {
         $jsonBody = $this->prepareBody($topic, $args, $kwargs);
 
@@ -58,13 +45,7 @@ class Publisher
         return json_decode($response->getBody(), true);
     }
 
-    /**
-     * @param $topic
-     * @param $args
-     * @param $kwargs
-     * @return array
-     */
-    private function prepareBody($topic, $args, $kwargs)
+    private function prepareBody(string $topic, ?array $args, ?array $kwargs): array
     {
         $body = [];
 
@@ -81,15 +62,11 @@ class Publisher
         return $body;
     }
 
-    /**
-     * @param array $body
-     * @return array
-     */
-    private function prepareSignature($body)
+    private function prepareSignature(array $body): array
     {
         $query = [];
 
-        $seq = mt_rand(0, pow(2, 12));
+        $seq = mt_rand(0, 2 ** 12);
         $now = new \DateTime('now', new \DateTimeZone('UTC'));
         $timestamp = $now->format("Y-m-d\TH:i:s.u\Z");
 
@@ -98,7 +75,7 @@ class Publisher
 
         if (null !== $this->key && null !== $this->secret) {
 
-            $nonce = mt_rand(0, pow(2, 53));
+            $nonce = mt_rand(0, 2 ** 53);
             $signature = hash_hmac(
                 'sha256',
                 $this->key . $timestamp . $seq . $nonce . json_encode($body),

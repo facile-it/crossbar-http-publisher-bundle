@@ -12,5 +12,6 @@ return static function (RectorConfig $rectorConfig): void {
 
     $rectorConfig->sets([
         \Rector\PHPUnit\Set\PHPUnitSetList::PHPUNIT_100,
+        \Rector\Set\ValueObject\LevelSetList::UP_TO_PHP_74,
     ]);
 };

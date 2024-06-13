@@ -16,7 +16,7 @@ abstract class BaseFunctionalTest extends TestCase
 
     protected function setUp(): void
     {
-        $kernel = new \AppKernel('test', true);
+        $kernel = new \AppKernel('test', false);
         $kernel->boot();
 
         $this->container = $kernel->getContainer();

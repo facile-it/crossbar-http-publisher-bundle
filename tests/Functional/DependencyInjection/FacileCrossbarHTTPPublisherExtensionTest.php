@@ -15,7 +15,7 @@ class FacileCrossbarHTTPPublisherExtensionTest extends BaseFunctionalTest
     {
         /** @var ContainerInterface $container */
         $container = $this->container;
-        $this->assertInstanceOf('\Symfony\Component\DependencyInjection\ContainerInterface', $container);
+        $this->assertInstanceOf(\Symfony\Component\DependencyInjection\ContainerInterface::class, $container);
 
         $this->assertTrue(
             $container->has('facile.crossbar.publisher.dummy_publisher'),
@@ -23,6 +23,6 @@ class FacileCrossbarHTTPPublisherExtensionTest extends BaseFunctionalTest
         );
 
         $publisher = $container->get('facile.crossbar.publisher.dummy_publisher');
-        $this->assertInstanceOf('\Facile\CrossbarHTTPPublisherBundle\Publisher\Publisher', $publisher);
+        $this->assertInstanceOf(\Facile\CrossbarHTTPPublisherBundle\Publisher\Publisher::class, $publisher);
     }
 }

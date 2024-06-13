@@ -4,15 +4,12 @@ use Symfony\Component\Config\Loader\LoaderInterface;
 
 class AppKernel extends Kernel
 {
-    public function registerBundles()
+    public function registerBundles(): array
     {
-        return array(
-            new Symfony\Bundle\FrameworkBundle\FrameworkBundle(),
-            new Facile\CrossbarHTTPPublisherBundle\FacileCrossbarHTTPPublisherBundle(),
-        );
+        return [new Symfony\Bundle\FrameworkBundle\FrameworkBundle(), new Facile\CrossbarHTTPPublisherBundle\FacileCrossbarHTTPPublisherBundle()];
     }
 
-    public function registerContainerConfiguration(LoaderInterface $loader)
+    public function registerContainerConfiguration(LoaderInterface $loader): void
     {
         $loader->load(__DIR__.'/config.yml');
     }

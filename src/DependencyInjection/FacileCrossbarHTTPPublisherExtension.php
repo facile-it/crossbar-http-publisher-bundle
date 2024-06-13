@@ -19,7 +19,7 @@ class FacileCrossbarHTTPPublisherExtension extends Extension
     /**
      * {@inheritDoc}
      */
-    public function load(array $config, ContainerBuilder $container)
+    public function load(array $config, ContainerBuilder $container): void
     {
         $configuration = new Configuration();
         $config = $this->processConfiguration($configuration, $config);
@@ -32,7 +32,7 @@ class FacileCrossbarHTTPPublisherExtension extends Extension
      * @param ContainerBuilder $container
      * @param array $config
      */
-    private function loadConnections(ContainerBuilder $container, array $config)
+    private function loadConnections(ContainerBuilder $container, array $config): void
     {
         $factoryName = $this->addFactoryToContainer($container);
         $genericDefinition = new Definition(Publisher::class);
@@ -63,7 +63,7 @@ class FacileCrossbarHTTPPublisherExtension extends Extension
      * @param ContainerBuilder $container
      * @return string The factory service name inside the container
      */
-    private function addFactoryToContainer(ContainerBuilder $container)
+    private function addFactoryToContainer(ContainerBuilder $container): string
     {
         $factoryDefinition = new Definition(Factory::class);
         $factoryDefinition->setPublic(false);
