@@ -13,16 +13,16 @@
     "crossbar"
   ],
   "require": {
-    "php": "^7.0|^8.0",
-    "symfony/http-kernel": "^2.7 || ^3.0 || ^4.0",
-    "symfony/framework-bundle": "^2.7 || ^3.0 || ^4.0",
-    "symfony/dependency-injection": "^2.7 || ^3.0 || ^4.0",
-    "symfony/config": "^2.7 || ^3.0 || ^4.0",
+    "php": "^7.4 || ^8.0",
+    "symfony/http-kernel": "^4.4 || ^5.4 || ^6.4",
+    "symfony/framework-bundle": "^4.4 || ^5.4 || ^6.4",
+    "symfony/dependency-injection": "^4.4 || ^5.4 || ^6.4",
+    "symfony/config": "^4.4 || ^5.4 || ^6.4",
     "guzzlehttp/guzzle": "^5.0 || ^6.0"
   },
   "require-dev": {
-    "phpunit/phpunit": "^9",
-    "symfony/yaml": "^2.7 || ^3.0 || ^4.0",
+    "phpunit/phpunit": "^9.6",
+    "symfony/yaml": "^4.4 || ^5.4 || ^6.4",
     "rector/rector": "^1",
     "phpspec/prophecy": "^1.18",
     "phpspec/prophecy-phpunit": "^2.1"

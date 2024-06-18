@@ -11,18 +11,18 @@ use GuzzleHttp\Client as GuzzleClient;
 class Factory
 {
     /**
-     * @param string $protocol
-     * @param string $host
-     * @param int $port
-     * @param string $path
-     * @param string $key
-     * @param string $secret
      * @param bool|string $hostname
-     * @param bool $ignoreSsl
-     * @return Publisher
      */
-    public function createPublisher($protocol, $host, $port, $path, $key, $secret, $hostname, $ignoreSsl)
-    {
+    public function createPublisher(
+        string $protocol,
+        string $host,
+        int $port,
+        string $path,
+        ?string $key,
+        ?string $secret,
+        $hostname,
+        bool $ignoreSsl = false
+    ): Publisher {
         $config = [];
 
         $config['base_url'] = sprintf(

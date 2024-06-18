@@ -14,22 +14,17 @@ class Configuration implements ConfigurationInterface
 {
     /**
      * Generates the configuration tree builder.
-     *
-     * @return \Symfony\Component\Config\Definition\Builder\TreeBuilder The tree builder
      */
-    public function getConfigTreeBuilder()
+    public function getConfigTreeBuilder(): TreeBuilder
     {
-        $tree = new TreeBuilder();
-        $rootNode = $tree->root('facile_crossbar_http_publisher');
+        $tree = new TreeBuilder('facile_crossbar_http_publisher');
+        $rootNode = $tree->getRootNode();
         $this->addConnections($rootNode);
 
         return $tree;
     }
 
-    /**
-     * @param ArrayNodeDefinition $node
-     */
-    protected function addConnections(ArrayNodeDefinition $node)
+    protected function addConnections(ArrayNodeDefinition $node): void
     {
         $node
             ->fixXmlConfig('connection')
