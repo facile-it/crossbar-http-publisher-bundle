@@ -4,6 +4,12 @@ All notable changes of the CrossbarHttpPublisherBundle are documented in this fi
 [Keep a CHANGELOG](http://keepachangelog.com/) principles.
 
 ## [Unreleased]
+## [2.0.0] - 2024-06-18
+### Changed
+- `\Facile\CrossbarHTTPPublisherBundle\Publisher\Factory::createPublisher` and `\Facile\CrossbarHTTPPublisherBundle\Publisher\Publisher`'s methods now have typed parameters.
+### Removed
+- Support for PHP < 7.4
+- Support for Symfony < 4.4
 
 ## [1.1.0] - 2024-03-11
 ### Added
@@ -49,5 +55,6 @@ All notable changes of the CrossbarHttpPublisherBundle are documented in this fi
 
 * First, belated tagged release; previously released as dev-master only 
 
-[Unreleased]: https://github.com/facile-it/crossbar-http-publisher-bundle/compare/1.1.0..master
+[Unreleased]: https://github.com/facile-it/crossbar-http-publisher-bundle/compare/2.0.0..master
+[2.0.0]: https://github.com/facile-it/crossbar-http-publisher-bundle/compare/1.1.0..2.0.0
 [1.1.0]: https://github.com/facile-it/crossbar-http-publisher-bundle/compare/1.0.1..1.1.0
