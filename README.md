@@ -19,8 +19,8 @@ This bundle allows to submit PubSub events via HTTP/POST requests to a [Crossbar
 
 ## Requirements
 * PHP >= 7
-* Guzzle 5 or 6
-* The following Symfony components (or the full-stack framework), version 2.7, 2.8, 3.x or 4.x:
+* Guzzle 5, 6 or 7 (7 is recommended)
+* The following Symfony components (or the full-stack framework), version 4.x, 5.x, 6.x, or 7.x:
     * symfony/framework-bundle
     * symfony/dependency-injection
     * symfony/config
@@ -38,10 +38,10 @@ $ composer require facile-it/crossbar-http-publisher-bundle
 ```php
 public function registerBundles()
 {
-    return array(
+    return [
         // ...
         new Facile\CrossbarHTTPPublisherBundle\FacileCrossbarHTTPPublisherBundle(),
-    );
+    ];
 }
 ````
 

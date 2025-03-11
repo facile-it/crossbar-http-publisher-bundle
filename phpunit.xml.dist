@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- http://phpunit.de/manual/4.3/en/appendixes.configuration.html -->
-<phpunit xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://schema.phpunit.de/9.3/phpunit.xsd" backupGlobals="false" colors="true" bootstrap="./tests/app/autoload.php">
+<!-- https://docs.phpunit.de/en/9.6/configuration.html -->
+<!-- XXX we need to avoid converting warnings to exceptions, as it breaks with Guzzle 5 -->
+<phpunit xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="vendor/phpunit/phpunit/phpunit.xsd" colors="true" bootstrap="./tests/app/autoload.php" convertWarningsToExceptions="false">
   <coverage>
     <include>
       <directory>./src/</directory>

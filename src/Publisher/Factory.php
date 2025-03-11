@@ -44,6 +44,10 @@ class Factory
             $config['verify'] = false;
         }
 
+        if (defined('GuzzleHttp\ClientInterface::VERSION')) {
+            @trigger_error('Guzzle versions before 7 are deprecated.', E_USER_DEPRECATED);
+        }
+
         $guzzleClient = new GuzzleClient($config);
 
         return new Publisher($guzzleClient, $key, $secret);
