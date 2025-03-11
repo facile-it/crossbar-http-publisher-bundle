@@ -16,16 +16,16 @@ jobs:
             dependency-versions: "lowest"
           - php: 8.1
             symfony: "^5.4"
-            dependency-versions: "higest"
+            dependency-versions: "highest"
           - php: 8.2
             symfony: "^5.4"
-            dependency-versions: "higest"
+            dependency-versions: "highest"
           - php: 8.3
             symfony: "^6.4"
-            dependency-versions: "higest"
+            dependency-versions: "highest"
           - php: 8.4
             symfony: "^6.4"
-            dependency-versions: "higest"
+            dependency-versions: "highest"
     steps:
       - name: Checkout
         uses: actions/checkout@v4
