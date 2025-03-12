@@ -4,6 +4,12 @@ All notable changes of the CrossbarHttpPublisherBundle are documented in this fi
 [Keep a CHANGELOG](http://keepachangelog.com/) principles.
 
 ## [Unreleased]
+## [2.1.0] - 2025-03-12
+### Added
+- Support for Guzzle 7
+### Changed
+- Deprecated support for Guzzle 5 & 6
+
 ## [2.0.0] - 2024-06-18
 ### Changed
 - `\Facile\CrossbarHTTPPublisherBundle\Publisher\Factory::createPublisher` and `\Facile\CrossbarHTTPPublisherBundle\Publisher\Publisher`'s methods now have typed parameters.
